@@ -1,13 +1,18 @@
 <template>
   <div id="app">
+    <home-tab></home-tab>
     <!-- <img src="./assets/logo.png"> -->
     <router-view/>
   </div>
 </template>
 
 <script>
+import HomeTab from './components/Tab/Tab'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    HomeTab
+  }
 }
 </script>
 
