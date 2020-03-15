@@ -1,18 +1,23 @@
 <template>
   <div class="tab">
-    <ul class="wrapper">
+    <ul class="wrapper">      
       <li
         v-for="(tab, index) of tabList"
         :class="index===activeIndex ? 'item item-active' : 'item'"
         :key="index"
-        @click="handleClickTab(index)"
+        @click="handleClickTab(index, tab.link)"
       >
-        {{tab}}
+        {{tab.item}}
       </li>
       <!-- 下划线 -->
-      <div 
+      <!-- 
+        style使用{属性: 值}的方式进行css定义，而class使用style名称方式
+        这里的:style后面的值可以用computed属性进行代替，即 
+        computed: 
+       -->
+      <div
         class="tab-line"
-        :class="{transform: `translated3d(${this.activeIndex * 100}%, 0, 0)`}"
+        :style="{transform: `translate3d(${this.activeIndex * 100}%, 0, 0)`}"
       >
         <div class="tab-line-center"></div>
       </div>
@@ -24,14 +29,21 @@
 export default {
   data() {
     return {
-      tabList: ["上海疫情", "搜索指数", "疫情问答", "确诊小区", "最新进展", "个人防护", "加入我们"],
       activeIndex: 0
     }
   },
+  props: {
+    tabList: {
+      type: Array,
+      required: true,
+      default: []
+    },
+  },
   methods: {
-    handleClickTab(index) {
+    handleClickTab(index, link) {
       this.activeIndex = index
-      console.log(this.activeIndex)
+      // console.log(this.$router.param)
+      this.$router.push(link, () => {}, err => {console.log(err)})
     }
   }
 
@@ -47,6 +59,7 @@ export default {
 
   .wrapper
     // background-color red
+    min-width: 540px;
     height 44px
     line-height 44px
     text-align center
@@ -70,7 +83,7 @@ export default {
     transition transform .3s ease-in-out
 
   .tab-line-center
-    width 50%
+    width 46%
     height 100%
     margin 0 auto
     background-color #f85959
