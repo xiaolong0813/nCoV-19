@@ -1,9 +1,9 @@
 <template>
     <section>
       <div class="mock">
-          <div class="main">Loading.....</div>        
-    </div>   
-    </section>     
+          <div class="main">Loading.....</div>
+    </div>
+    </section>
 </template>
 
 <script>
@@ -27,9 +27,10 @@ export default {
         background-color: #abb2bf;
     }
     .main {
-        position: absolute;
-        top: 200px;
-        left: 50%;
+        /*position: absolute;*/
+        /*top: 200px;*/
+        /*left: 50%;*/
+        margin: 200px auto;
         text-align: center;
     }
 
