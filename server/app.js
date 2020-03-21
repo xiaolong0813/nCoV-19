@@ -4,12 +4,16 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const cors = require('cors')
+
 // 路由
 var dataRouter = require('./routes/data');
 // var qaRouter = require('./routes/qa');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+app.use(cors())   // 使用cors跨域
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));

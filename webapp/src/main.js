@@ -11,12 +11,16 @@ import 'styles/border.css'
 // bable-polyfill
 import 'babel-polyfill'
 
+// vuex store 实例
+import store from './store/index'
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
+    el: '#app',
+    router,
+    store,
+    components: { App },
+    template: '<App/>'
 })

@@ -1,6 +1,8 @@
 // const cityCode = '310000'
 // const cityName = 'shanghai'
 
+console.log('links 被调用了')
+
 function getGenLinks() {
     return {
         ncov_data_all: 'https://i.snssdk.com/forum/home/v1/info/?forum_id=1656784762444839',

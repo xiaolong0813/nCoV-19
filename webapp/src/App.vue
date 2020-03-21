@@ -44,12 +44,15 @@ export default {
       text-align: center;
       color: #2c3e50; */
       /* margin-top: 60px; */
-      height: 100%;
-      max-width: 640px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      position: relative;
+        height: 100%;
+        max-width: 640px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+
+        font-size: .32rem;
+        color: #222222;
     }
     .content {
         /*flex: 1 1;*/
