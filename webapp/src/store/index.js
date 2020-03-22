@@ -5,10 +5,14 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 // 查看是否有 localStorage 存储的历史记录，如果有的话则使用，没有就用默认
-let defaultCity = '310000'
+let defaultCity = {
+    name: '上海',
+    code: '310000'
+}
+
 try {
-    if (localStorage.cityCode) {
-        defaultCity = localStorage.cityCode
+    if (localStorage.city) {
+        defaultCity = localStorage.city
     }
 } catch (e) {
     console.log(e)
@@ -16,15 +20,15 @@ try {
 
 export default new Vuex.Store({
     state: {
-        cityCode: defaultCity
+        city: defaultCity
     },
     mutations: {
         // 更新city code
-        cityCommit: function (state, newCode) {
-            state.cityCode = newCode
+        cityCommit: function (state, newCity) {
+            state.city = newCity
             // 保存到本地，以便下次加载使用
             try {
-                localStorage.cityCode = newCode
+                localStorage.city = newCity
             } catch (e) {
                 console.log(e)
             }

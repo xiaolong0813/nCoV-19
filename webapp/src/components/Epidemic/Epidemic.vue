@@ -1,15 +1,15 @@
 <template>
   <div>
-      <logo></logo>
+      <logo :city="this.curCity.name"></logo>
       <header></header>
       <total></total>
   </div>
 </template>
 
 <script>
-    import Logo from "./parts/Logo";
-    import Header from "./parts/Header";
-    import Total from "./parts/Total";
+    import Logo from "./components/Logo";
+    import Header from "./components/Header";
+    import Total from "./components/Total";
     import axios from 'axios'
     import api from '@/Utils/API'
     import { mapState } from 'vuex'
@@ -37,14 +37,14 @@ export default {
     computed: {
         // 将 vuex store 中的cityCode项使用computed计算属性进行监视。
         // 有变化直接反映。store中的修改由其他组件触发
-        ...mapState({curCityCode: 'cityCode'})
+        ...mapState({curCity: 'city'})
     },
     methods: {
         getCityNcovData() {
-            return axios.get(api.cityNcov + `?id=${this.curCityCode}`)
+            return axios.get(api.cityNcov + `?id=${this.curCity.code}`)
         },
         getCitiesData() {
-            return axios.get(api.cities + `?id=${this.curCityCode.slice(0, 2)}`)
+            return axios.get(api.cities + `?id=${this.curCity.code.slice(0, 2)}`)
         },
         getCityNcovCitiesData() {
             let res1 = this.getCityNcovData()
