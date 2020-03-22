@@ -1,0 +1,59 @@
+// 累积确诊颜色
+$confirmAllColor = #AE212C
+// 现有确诊颜色
+$confirmCurColor = #d96322
+// 死亡颜色
+$deadColor = #0f3046
+// 治愈颜色
+$curedColor = #39c4c4
+
+// text background color
+$textBC = rgba(216, 216, 216, 0.2)
+
+// 每个结构块
+.block-container
+    background-color chartreuse
+    margin-bottom .16rem
+    position relative
+
+// 结构块题目（包括title和时间）
+.block-title
+    padding: 0.4rem 0.32rem 0.24rem 0.3rem;
+    font-size: 0.38rem;
+    font-weight: bold;
+    color: #222222;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+
+// 统计数字（确诊，死亡，治愈）
+.stat-num
+    font-family 'ByteNumber-Bold'
+    font-size .44rem
+    font-weight bold
+    margin-bottom .04rem
+
+// 统计数字说明文字
+.stat-text
+    font-size .24rem
+    text-align center
+    background-color $textBC
+    color #222222
+    height .42rem
+    line-height .42rem
+    border-radius .04rem
+    margin 0 auto
+    display inline-block
+    padding 0 .14rem
+
+// 统计对比
+.stat-compare
+    color #999999
+    font-size .22rem
+    padding-top .12rem

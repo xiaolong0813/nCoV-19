@@ -56,7 +56,7 @@ export default {
     }
     .content {
         /*flex: 1 1;*/
-        background-color: red;
+        /*background-color: red;*/
         overflow-x: hidden;
         overflow-y: auto;
     }

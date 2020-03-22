@@ -1,24 +1,31 @@
 <template>
   <div>
-      <logo :city="this.curCity.name"></logo>
-      <header></header>
-      <total></total>
+      <epidemic-logo :city="this.curCity.name"></epidemic-logo>
+      <div class="block-container">
+          <epidemic-title></epidemic-title>
+          <epidemic-total></epidemic-total>
+          <epidemic-map></epidemic-map>
+      </div>
+
   </div>
 </template>
 
 <script>
-    import Logo from "./components/Logo";
-    import Header from "./components/Header";
-    import Total from "./components/Total";
+    import EpidemicLogo from "./components/Logo";
+    import EpidemicTitle from "./components/Title";
+    import EpidemicTotal from "./components/Total";
+    import EpidemicMap from "./components/Map";
+
     import axios from 'axios'
     import api from '@/Utils/API'
     import { mapState } from 'vuex'
 export default {
     name: 'Epidemic',
     components: {
-        Logo,
-        Header,
-        Total
+        EpidemicMap,
+        EpidemicTotal,
+        EpidemicLogo,
+        EpidemicTitle,
     },
     // keep-alive 的情况下仅第一次渲染时会触发。所以肯定需要获取数据
     mounted() {

@@ -7,6 +7,8 @@ import router from './router'
 // CSS
 import 'styles/reset.css'
 import 'styles/border.css'
+import 'styles/global.styl'
+import 'styles/iconfont.css'
 
 // bable-polyfill
 import 'babel-polyfill'
