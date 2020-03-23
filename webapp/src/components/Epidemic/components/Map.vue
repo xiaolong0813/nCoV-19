@@ -12,7 +12,11 @@
             </div>
             <div class="district-map-visual">
                 <div class="visual-item">
-                    <div class="visual-item-rect" style="border: 0.5px solid #c2c6cc"></div>
+                    <div
+                        class="visual-item-rect cityVisualMap-1"
+                        style="border: 0.5px solid #c2c6cc"
+
+                    ></div>
                     <p class="visual-item-text">0</p>
                 </div>
                 <div
@@ -20,7 +24,7 @@
                     v-for="i of 5"
                     :key="i"
                 >
-                    <div class="visual-item-rect" :style="{}"></div>
+                    <div :class="['visual-item-rect', 'cityVisualMap-' + (i + 1)]"></div>
                     <p class="visual-item-text">{{1 + 20 * (i - 1)}}-{{20 * i}}</p>
                 </div>
             </div>

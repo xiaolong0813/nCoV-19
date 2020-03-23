@@ -10,6 +10,19 @@ $curedColor = #39c4c4
 // text background color
 $textBC = rgba(216, 216, 216, 0.2)
 
+// 图例颜色
+$cityVisualMap-1 = rgb(255, 255, 255)
+$cityVisualMap-2 = rgb(255, 247, 185)
+$cityVisualMap-3 = rgb(255, 197, 79)
+$cityVisualMap-4 = rgb(241, 131, 52)
+$cityVisualMap-5 = rgb(232, 103, 73)
+$cityVisualMap-6 = rgb(206, 82, 58)
+
+
+for i in (1..6)
+    .cityVisualMap-{i}
+        background-color $cityVisualMap- + i
+
 // 每个结构块
 .block-container
     background-color chartreuse

@@ -1,6 +1,6 @@
 <template>
   <div class="tab">
-    <ul class="wrapper">      
+    <ul class="wrapper">
       <li
         v-for="(tab, index) of tabList"
         :class="index===activeIndex ? 'item item-active' : 'item'"
@@ -10,10 +10,10 @@
         {{tab.item}}
       </li>
       <!-- 下划线 -->
-      <!-- 
+      <!--
         style使用{属性: 值}的方式进行css定义，而class使用style名称方式
-        这里的:style后面的值可以用computed属性进行代替，即 
-        computed: 
+        这里的:style后面的值可以用computed属性进行代替，即
+        computed:
        -->
       <div
         class="tab-line"
@@ -55,7 +55,7 @@ export default {
     overflow-x scroll
 
   .tab::-webkit-scrollbar
-    display none 
+    display none
 
   .wrapper
     // background-color red
@@ -66,7 +66,7 @@ export default {
     font-size 16px
     min-width 540px
     display: flex
-    flex-direction: columns 
+    flex-direction: columns
     position relative
 
   .item
