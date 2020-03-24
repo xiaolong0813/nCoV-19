@@ -42,7 +42,7 @@
 <style scoped lang="stylus">
     @import "~styles/global.styl"
     .district
-        background-color lightyellow
+        background-color #ffffff
         padding .16rem .4rem .24rem .4rem
         .district-title
             display flex

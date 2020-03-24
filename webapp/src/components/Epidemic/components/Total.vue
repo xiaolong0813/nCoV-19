@@ -46,6 +46,7 @@
     .total
         /*background-color lightyellow*/
         margin-top .16rem
+        margin-bottom .18rem
         padding 0 0.26rem
         text-align center
         display flex

@@ -12,10 +12,10 @@
                 </div>
                 <div class="table-content">
                     <div class="table-item border-bottom"
-                         v-for="(item, index) in list"
+                         v-for="(item, index) in showList"
                          :key="index"
                     >
-                        <p class="p1">{{item.name}}{{item.name}}{{item.name}}{{item.name}}</p>
+                        <p class="p1">{{item.name}}</p>
                         <p class="p2"><span>{{!item.confirmed_incr ? '' : item.confirmed_incr}}</span></p>
                         <p class="p3"><span>{{!item.confirmed_count ? '' : item.confirmed_count}}</span></p>
                         <p class="p4"><span>{{!item.death_count ? '' : item.death_count}}</span></p>
@@ -24,8 +24,11 @@
                     </div>
                 </div>
             </div>
-            <p class="table-show-more">
-                <span>点击查看更多</span>
+            <p class="table-show-more"
+               @click="handleShowMore"
+            >
+                <span>{{showMoreText}}</span>
+                <i class="iconfont icon-down">{{showMoreIcon}}</i>
             </p>
         </div>
         <div class="card-show-anchor"></div>
@@ -40,11 +43,28 @@
                 showMore: false
             }
         },
+        computed: {
+            showMoreText() {
+                return this.showMore ? '点击收起' : '点击查看更多'
+            },
+            showMoreIcon() {
+                return this.showMore ? '&#xe744;' : '&#xe7b2;'
+            },
+            showList() {
+                if (this.list.length)
+                    return this.showMore ? this.list : this.list.slice(0,3)
+            }
+        },
         props: {
             list: {
                 type: Array,
                 required: true
             },
+        },
+        methods: {
+            handleShowMore() {
+                this.showMore = !this.showMore
+            }
         },
     }
 </script>
@@ -99,7 +119,8 @@
             text-align center
             font-weight bold
 
-            .table-item p:nth-of-type(n+2)
+            // 子元素中从第二个开始
+            p:nth-child(n+2)
                 width 52px
                 font-family 'ByteNumber-Bold'
                 margin-top .26rem
@@ -109,15 +130,29 @@
                 justify-content center
             .p1
                 flex 1
+                margin-top .26rem
+                margin-bottom .2rem
                 font-size .28rem
                 text-align left
                 padding-left .4rem
                 ellipsis()
+            .p2
+                color $newColor
 
 
 
 
-
-
-
+    .table-show-more
+        padding-bottom .32rem
+        font-size .28rem
+        color $cellColor
+        display flex
+        justify-content center
+        align-items center
+        .icon-down
+            width .36rem
+            height .36rem
+            transform scale(1.2)
+            position relative
+            top 0.02rem
 </style>

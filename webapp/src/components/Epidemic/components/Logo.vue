@@ -27,9 +27,9 @@
 <style scoped lang="stylus">
     .local-header
         overflow hidden
-        width 100%
-        height 0
-        padding-bottom 26.67%
+        /*width 100%*/
+        /*height 0*/
+        /*padding-bottom 26.67%*/
         background-color #f2f2f2
         box-sizing border-box
 
