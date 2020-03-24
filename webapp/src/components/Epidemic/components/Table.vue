@@ -16,11 +16,13 @@
                          :key="index"
                     >
                         <p class="p1">{{item.name}}</p>
-                        <p class="p2"><span>{{!item.confirmed_incr ? '' : item.confirmed_incr}}</span></p>
-                        <p class="p3"><span>{{!item.confirmed_count ? '' : item.confirmed_count}}</span></p>
-                        <p class="p4"><span>{{!item.death_count ? '' : item.death_count}}</span></p>
-                        <p class="p5"><span>{{!item.cured_count ? '' : item.cured_count}}</span></p>
-                        <p class="p6"></p>
+                        <p class="p2"><span>{{item.confirmed_incr > 0 ? item.confirmed_incr : ''}}</span></p>
+                        <p class="p3"><span>{{item.confirmed_count > 0 ? item.confirmed_count : ''}}</span></p>
+                        <p class="p4"><span>{{item.death_count > 0 ? item.death_count : ''}}</span></p>
+                        <p class="p5"><span>{{item.cured_count > 0 ? item.cured_count : ''}}</span></p>
+                        <p class="p6">
+
+                        </p>
                     </div>
                 </div>
             </div>
@@ -28,7 +30,9 @@
                @click="handleShowMore"
             >
                 <span>{{showMoreText}}</span>
-                <i class="iconfont icon-down">{{showMoreIcon}}</i>
+                <i class="iconfont icon-down" v-html="showMoreIcon">
+                    {{showMoreIcon}}
+                </i>
             </p>
         </div>
         <div class="card-show-anchor"></div>
@@ -48,11 +52,10 @@
                 return this.showMore ? '点击收起' : '点击查看更多'
             },
             showMoreIcon() {
-                return this.showMore ? '&#xe744;' : '&#xe7b2;'
+                return this.showMore ? `&#xe744;` : `&#xe7b2;`
             },
             showList() {
-                if (this.list.length)
-                    return this.showMore ? this.list : this.list.slice(0,3)
+                return this.showMore ? this.list : this.list.slice(0,3)
             }
         },
         props: {
