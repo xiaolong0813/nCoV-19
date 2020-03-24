@@ -5,6 +5,7 @@
           <epidemic-title></epidemic-title>
           <epidemic-total></epidemic-total>
           <epidemic-map></epidemic-map>
+          <epidemic-table :list="districtList"></epidemic-table>
       </div>
 
   </div>
@@ -15,6 +16,7 @@
     import EpidemicTitle from "./components/Title";
     import EpidemicTotal from "./components/Total";
     import EpidemicMap from "./components/Map";
+    import EpidemicTable from "./components/Table";
 
     import axios from 'axios'
     import api from '@/Utils/API'
@@ -26,6 +28,7 @@ export default {
         EpidemicTotal,
         EpidemicLogo,
         EpidemicTitle,
+        EpidemicTable
     },
     // keep-alive 的情况下仅第一次渲染时会触发。所以肯定需要获取数据
     mounted() {
@@ -33,12 +36,13 @@ export default {
     },
     // 仅在城市名改变，或者更新时间改变时才触发（待添加）
     activated() {
-        this.getCityNcovCitiesData()
+        // this.getCityNcovCitiesData()
     },
     data() {
         return {
             // curCityCode: '310000'
-
+            series: [],
+            districtList: []
         }
     },
     computed: {
@@ -47,19 +51,27 @@ export default {
         ...mapState({curCity: 'city'})
     },
     methods: {
-        getCityNcovData() {
-            return axios.get(api.cityNcov + `?id=${this.curCity.code}`)
+        getLocalNcovData() {
+            return axios.get(api.localNcov + `?id=${this.curCity.code}`)
         },
-        getCitiesData() {
-            return axios.get(api.cities + `?id=${this.curCity.code.slice(0, 2)}`)
+        getDistrictData() {
+            return axios.get(api.district_stat + `?id=${this.curCity.code}`)
         },
         getCityNcovCitiesData() {
-            let res1 = this.getCityNcovData()
-            let res2 = this.getCitiesData()
-            Promise.all([res1, res2]).then(this.getCityNcovCitiesDataSucc)
+            let res1 = this.getLocalNcovData()
+            let res2 = this.getDistrictData()
+            Promise.all([res1, res2]).then(this.getAllDataSucc)
         },
-        getCityNcovCitiesDataSucc(datas) {
+        getAllDataSucc(datas) {
             console.log(datas)
+            let localNov = datas[0].data
+            let districtStat = datas[1].data
+            if (!localNov.errNo && localNov.data) {
+                this.series = localNov.data.series
+            }
+            if (!districtStat.errNo && districtStat.data.status === 'success') {
+                this.districtList = districtStat.data.data.list
+            }
         }
     },
 

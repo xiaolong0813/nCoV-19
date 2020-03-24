@@ -9,8 +9,8 @@ const test = require('../utils/test')
 const axios = require('axios')
 
 // async await 格式。获取某城市（或省）的病毒信息
-// router: /cityNcov?id=310000
-router.get('/cityNcov', async (req, res, next) => {
+// router: /city_Ncov?id=310000
+router.get('/ncov_data', async (req, res, next) => {
     let id = req.query.id  // "310000"
     const res_city = await axios.get(getCityLinks(id).ncov_data_city)
 
@@ -23,16 +23,16 @@ router.get('/cityNcov', async (req, res, next) => {
 })
 
 // .then 格式。获取某个省内所有城市/区的信息
-// router: /cities?id=31
-router.get('/cities', (req, res, next) => {
+// router: /district_stat?id=310000
+router.get('/district_stat', (req, res, next) => {
     let id = req.query.id
-    const cities = axios.get(getGenLinks().ncov_data_all)
+    const cities = axios.get(getCityLinks(id).district_stat)
 
     cities.then(data => {
-        if (data.data.err_no === 0) {
-            let ret = JSON.parse(data.data.forum.extra.ncov_string_list)
-            ret = ret.provinces.filter(province => province.id === id)[0];
-            res.json(new SuccessModel(ret.cities))
+        if (data.data) {
+            // let ret = JSON.parse(data.data.forum.extra.ncov_string_list)
+            // ret = ret.provinces.filter(province => province.id === id)[0];
+            res.json(new SuccessModel(data.data))
         } else {
             res.json(new ErrorModel('获取数据失败'))
         }

@@ -7,7 +7,7 @@ var logger = require('morgan');
 const cors = require('cors')
 
 // 路由
-var dataRouter = require('./routes/data');
+var localRouter = require('./routes/local');
 // var qaRouter = require('./routes/qa');
 var usersRouter = require('./routes/users');
 
@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: false }));   // 获取post的urlencoded�
 app.use(cookieParser());  // 解析cookie
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api/data', dataRouter);
+app.use('/api/local', localRouter);
 // app.use('/api/qa', qaRouter);
 app.use('/users', usersRouter);
 

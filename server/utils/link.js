@@ -15,7 +15,8 @@ function getGenLinks() {
 function getCityLinks(cityCode) {
     return {
         ncov_data_city: `https://i.snssdk.com/forum/ncov_data/?data_type=%5B1%5D&city_code=%5B%22${cityCode}%22%5D`,
-        track: `https://i.snssdk.com/toutiao/normandy/pneumonia_trending/track_list/?city_code=${cityCode}`,
+        district_stat: `https://i.snssdk.com/toutiao/normandy/pneumonia_trending/district_stat/?local_id=${cityCode}`,
+        trackList: `https://i.snssdk.com/toutiao/normandy/pneumonia_trending/track_list/?city_code=${cityCode}`,
         shanghai_index: `http://121.36.4.93:5000/shanghai`
     }
 }
