@@ -21,7 +21,7 @@
     import EpidemicTrend from "./components/Trend";
 
     import axios from 'axios'
-    import api from '@/Utils/API'
+    import api from '@/utils/API'
     import { mapState } from 'vuex'
 export default {
     name: 'Epidemic',

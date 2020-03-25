@@ -131,6 +131,7 @@
                 display flex
                 align-items center
                 justify-content center
+                font-weight normal
             .p1
                 flex 1
                 margin-top .26rem
