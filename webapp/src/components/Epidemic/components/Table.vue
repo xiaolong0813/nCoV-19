@@ -125,7 +125,7 @@
             // 子元素中从第二个开始
             p:nth-child(n+2)
                 width 52px
-                font-family 'ByteNumber-Bold'
+                font-family ByteNumber-Bold
                 margin-top .26rem
                 margin-bottom .2rem
                 display flex
@@ -141,9 +141,6 @@
                 ellipsis()
             .p2
                 color $newColor
-
-
-
 
     .table-show-more
         padding-bottom .32rem

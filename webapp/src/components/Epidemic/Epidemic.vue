@@ -6,6 +6,7 @@
           <epidemic-total></epidemic-total>
           <epidemic-map></epidemic-map>
           <epidemic-table :list="districtList"></epidemic-table>
+          <epidemic-trend></epidemic-trend>
       </div>
 
   </div>
@@ -17,6 +18,7 @@
     import EpidemicTotal from "./components/Total";
     import EpidemicMap from "./components/Map";
     import EpidemicTable from "./components/Table";
+    import EpidemicTrend from "./components/Trend";
 
     import axios from 'axios'
     import api from '@/Utils/API'
@@ -28,7 +30,8 @@ export default {
         EpidemicTotal,
         EpidemicLogo,
         EpidemicTitle,
-        EpidemicTable
+        EpidemicTable,
+        EpidemicTrend
     },
     // keep-alive 的情况下仅第一次渲染时会触发。所以肯定需要获取数据
     mounted() {
