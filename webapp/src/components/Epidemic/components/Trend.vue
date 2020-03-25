@@ -5,6 +5,7 @@
 </template>
 
 <script>
+    import VueEcharts from 'vue-echarts'
     export default {
         name: "EpidemicTrend"
     }

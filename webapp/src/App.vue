@@ -36,29 +36,31 @@ export default {
 }
 </script>
 
-<style>
-    #app {
-      /* font-family: 'Avenir', Helvetica, Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-align: center;
-      color: #2c3e50; */
-      /* margin-top: 60px; */
-        height: 100%;
-        max-width: 640px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        position: relative;
+<style scoped lang="stylus">
+    #app
+        webkit-font-smoothing: antialiased
+        height 100%
+        max-width 640px
+        margin 0 auto
+        display flex
+        flex-direction column
+        position relative
 
-        font-size: .32rem;
-        color: #222222;
-    }
-    .content {
+        font-size .32rem
+        color #222222
+
+        &::-webkit-scrollbar
+            display none
+
+
+    .content
+        overflow-x hidden
+        overflow-y auto
+
+        &::-webkit-scrollbar
+            display none
         /*flex: 1 1;*/
         /*background-color: red;*/
-        overflow-x: hidden;
-        overflow-y: auto;
-    }
+
 
 </style>
