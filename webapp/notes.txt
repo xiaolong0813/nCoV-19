@@ -5,3 +5,4 @@
 4. HTML5----响应式（自适应）网页设计（自动适应屏幕大小）。html标签内的font-size可以随着屏幕尺寸变化
 5. total，较前日
 6. local 的table，最后一列，详情
+7 https://www.jianshu.com/p/7994176fbcc4 参考echarts使用方法。使用vuex较好

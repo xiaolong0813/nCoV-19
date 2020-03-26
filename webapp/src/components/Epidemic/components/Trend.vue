@@ -7,15 +7,15 @@
 </template>
 
 <script>
-    import VueEcharts from 'vue-echarts'
+    import echarts from 'echarts'
     export default {
         name: "EpidemicTrend",
         mounted() {
-            
+
         },
         methods: {
             getEchartData() {
-                
+
             }
         },
     }
