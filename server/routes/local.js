@@ -23,7 +23,7 @@ router.get('/ncov_data', async (req, res, next) => {
 })
 
 // .then 格式。获取某个省内所有城市/区的信息
-// router: /district_stat?id=310000
+// router: /district_stat.json?id=310000
 router.get('/district_stat', (req, res, next) => {
     let id = req.query.id
     const cities = axios.get(getCityLinks(id).district_stat)

@@ -30,10 +30,10 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/shanghai'
+      redirect: '/local'
     },
     {
-      path: '/shanghai',
+      path: '/local',
       name: 'Epidemic',
       component: Epidemic
     },

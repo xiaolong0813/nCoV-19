@@ -1,170 +1,174 @@
 {
-    "data": {
-        "list": [
-            {
-                "local_id": 0,
-                "name": "外地来沪",
-                "confirmed_count": 111,
-                "death_count": 0,
-                "suspected_count": 0,
-                "cured_count": 107,
-                "confirmed_incr": 0
-            },
-            {
-                "local_id": 0,
-                "name": "境外输入",
-                "confirmed_count": 75,
-                "death_count": 0,
-                "suspected_count": 0,
-                "cured_count": 2,
-                "confirmed_incr": 9
-            },
-            {
-                "local_id": 310115,
-                "name": "浦东",
-                "confirmed_count": 61,
-                "death_count": 0,
-                "suspected_count": 0,
-                "cured_count": 61,
-                "confirmed_incr": 0
-            },
-            {
-                "local_id": 310113,
-                "name": "宝山",
-                "confirmed_count": 22,
-                "death_count": 1,
-                "suspected_count": 0,
-                "cured_count": 19,
-                "confirmed_incr": 1
-            },
-            {
-                "local_id": 310112,
-                "name": "闵行",
-                "confirmed_count": 19,
-                "death_count": 0,
-                "suspected_count": 0,
-                "cured_count": 19,
-                "confirmed_incr": 0
-            },
-            {
-                "local_id": 310104,
-                "name": "徐汇",
-                "confirmed_count": 18,
-                "death_count": 0,
-                "suspected_count": 0,
-                "cured_count": 17,
-                "confirmed_incr": 0
-            },
-            {
-                "local_id": 310106,
-                "name": "静安",
-                "confirmed_count": 16,
-                "death_count": 1,
-                "suspected_count": 0,
-                "cured_count": 15,
-                "confirmed_incr": 0
-            },
-            {
-                "local_id": 310117,
-                "name": "松江",
-                "confirmed_count": 14,
-                "death_count": 0,
-                "suspected_count": 0,
-                "cured_count": 14,
-                "confirmed_incr": 0
-            },
-            {
-                "local_id": 310105,
-                "name": "长宁",
-                "confirmed_count": 13,
-                "death_count": 0,
-                "suspected_count": 0,
-                "cured_count": 13,
-                "confirmed_incr": 0
-            },
-            {
-                "local_id": 310107,
-                "name": "普陀",
-                "confirmed_count": 11,
-                "death_count": 0,
-                "suspected_count": 0,
-                "cured_count": 11,
-                "confirmed_incr": 0
-            },
-            {
-                "local_id": 310120,
-                "name": "奉贤",
-                "confirmed_count": 9,
-                "death_count": 0,
-                "suspected_count": 0,
-                "cured_count": 9,
-                "confirmed_incr": 0
-            },
-            {
-                "local_id": 310110,
-                "name": "杨浦",
-                "confirmed_count": 9,
-                "death_count": 0,
-                "suspected_count": 0,
-                "cured_count": 9,
-                "confirmed_incr": 0
-            },
-            {
-                "local_id": 310114,
-                "name": "嘉定",
-                "confirmed_count": 9,
-                "death_count": 1,
-                "suspected_count": 0,
-                "cured_count": 7,
-                "confirmed_incr": 0
-            },
-            {
-                "local_id": 310109,
-                "name": "虹口",
-                "confirmed_count": 7,
-                "death_count": 0,
-                "suspected_count": 0,
-                "cured_count": 7,
-                "confirmed_incr": 0
-            },
-            {
-                "local_id": 310101,
-                "name": "黄浦",
-                "confirmed_count": 6,
-                "death_count": 1,
-                "suspected_count": 0,
-                "cured_count": 5,
-                "confirmed_incr": 0
-            },
-            {
-                "local_id": 310118,
-                "name": "青浦",
-                "confirmed_count": 6,
-                "death_count": 0,
-                "suspected_count": 0,
-                "cured_count": 6,
-                "confirmed_incr": 0
-            },
-            {
-                "local_id": 310151,
-                "name": "崇明",
-                "confirmed_count": 4,
-                "death_count": 0,
-                "suspected_count": 0,
-                "cured_count": 4,
-                "confirmed_incr": 0
-            },
-            {
-                "local_id": 310116,
-                "name": "金山",
-                "confirmed_count": 4,
-                "death_count": 0,
-                "suspected_count": 0,
-                "cured_count": 4,
-                "confirmed_incr": 0
-            }
-        ]
-    },
-    "logid": "2020032409335801001808109004836C52",
-    "status": "success"
+    "errNo": 0,
+    "data" : {
+        "data": {
+            "list": [
+                {
+                    "local_id": 0,
+                    "name": "外地来沪",
+                    "confirmed_count": 111,
+                    "death_count": 0,
+                    "suspected_count": 0,
+                    "cured_count": 107,
+                    "confirmed_incr": 0
+                },
+                {
+                    "local_id": 0,
+                    "name": "境外输入",
+                    "confirmed_count": 75,
+                    "death_count": 0,
+                    "suspected_count": 0,
+                    "cured_count": 2,
+                    "confirmed_incr": 9
+                },
+                {
+                    "local_id": 310115,
+                    "name": "浦东",
+                    "confirmed_count": 61,
+                    "death_count": 0,
+                    "suspected_count": 0,
+                    "cured_count": 61,
+                    "confirmed_incr": 0
+                },
+                {
+                    "local_id": 310113,
+                    "name": "宝山",
+                    "confirmed_count": 22,
+                    "death_count": 1,
+                    "suspected_count": 0,
+                    "cured_count": 19,
+                    "confirmed_incr": 1
+                },
+                {
+                    "local_id": 310112,
+                    "name": "闵行",
+                    "confirmed_count": 19,
+                    "death_count": 0,
+                    "suspected_count": 0,
+                    "cured_count": 19,
+                    "confirmed_incr": 0
+                },
+                {
+                    "local_id": 310104,
+                    "name": "徐汇",
+                    "confirmed_count": 18,
+                    "death_count": 0,
+                    "suspected_count": 0,
+                    "cured_count": 17,
+                    "confirmed_incr": 0
+                },
+                {
+                    "local_id": 310106,
+                    "name": "静安",
+                    "confirmed_count": 16,
+                    "death_count": 1,
+                    "suspected_count": 0,
+                    "cured_count": 15,
+                    "confirmed_incr": 0
+                },
+                {
+                    "local_id": 310117,
+                    "name": "松江",
+                    "confirmed_count": 14,
+                    "death_count": 0,
+                    "suspected_count": 0,
+                    "cured_count": 14,
+                    "confirmed_incr": 0
+                },
+                {
+                    "local_id": 310105,
+                    "name": "长宁",
+                    "confirmed_count": 13,
+                    "death_count": 0,
+                    "suspected_count": 0,
+                    "cured_count": 13,
+                    "confirmed_incr": 0
+                },
+                {
+                    "local_id": 310107,
+                    "name": "普陀",
+                    "confirmed_count": 11,
+                    "death_count": 0,
+                    "suspected_count": 0,
+                    "cured_count": 11,
+                    "confirmed_incr": 0
+                },
+                {
+                    "local_id": 310120,
+                    "name": "奉贤",
+                    "confirmed_count": 9,
+                    "death_count": 0,
+                    "suspected_count": 0,
+                    "cured_count": 9,
+                    "confirmed_incr": 0
+                },
+                {
+                    "local_id": 310110,
+                    "name": "杨浦",
+                    "confirmed_count": 9,
+                    "death_count": 0,
+                    "suspected_count": 0,
+                    "cured_count": 9,
+                    "confirmed_incr": 0
+                },
+                {
+                    "local_id": 310114,
+                    "name": "嘉定",
+                    "confirmed_count": 9,
+                    "death_count": 1,
+                    "suspected_count": 0,
+                    "cured_count": 7,
+                    "confirmed_incr": 0
+                },
+                {
+                    "local_id": 310109,
+                    "name": "虹口",
+                    "confirmed_count": 7,
+                    "death_count": 0,
+                    "suspected_count": 0,
+                    "cured_count": 7,
+                    "confirmed_incr": 0
+                },
+                {
+                    "local_id": 310101,
+                    "name": "黄浦",
+                    "confirmed_count": 6,
+                    "death_count": 1,
+                    "suspected_count": 0,
+                    "cured_count": 5,
+                    "confirmed_incr": 0
+                },
+                {
+                    "local_id": 310118,
+                    "name": "青浦",
+                    "confirmed_count": 6,
+                    "death_count": 0,
+                    "suspected_count": 0,
+                    "cured_count": 6,
+                    "confirmed_incr": 0
+                },
+                {
+                    "local_id": 310151,
+                    "name": "崇明",
+                    "confirmed_count": 4,
+                    "death_count": 0,
+                    "suspected_count": 0,
+                    "cured_count": 4,
+                    "confirmed_incr": 0
+                },
+                {
+                    "local_id": 310116,
+                    "name": "金山",
+                    "confirmed_count": 4,
+                    "death_count": 0,
+                    "suspected_count": 0,
+                    "cured_count": 4,
+                    "confirmed_incr": 0
+                }
+            ]
+        },
+        "logid": "2020032409335801001808109004836C52",
+        "status": "success"
+    }
 }
+

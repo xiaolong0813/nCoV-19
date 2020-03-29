@@ -6,7 +6,7 @@
           <epidemic-total></epidemic-total>
           <epidemic-map></epidemic-map>
           <epidemic-table :list="districtList"></epidemic-table>
-          <epidemic-trend></epidemic-trend>
+          <epidemic-trend :series="series"></epidemic-trend>
       </div>
 
   </div>
@@ -19,9 +19,9 @@
     import EpidemicMap from "./components/Map";
     import EpidemicTable from "./components/Table";
     import EpidemicTrend from "./components/Trend";
-
-    import axios from 'axios'
-    import api from '@/utils/API'
+    // udf api
+    import { getLocalNcov, getDistrictStat } from '@/api/local'
+    // store
     import { mapState } from 'vuex'
 export default {
     name: 'Epidemic',
@@ -35,7 +35,7 @@ export default {
     },
     // keep-alive 的情况下仅第一次渲染时会触发。所以肯定需要获取数据
     mounted() {
-        this.getCityNcovCitiesData()
+        this.getAllData()
     },
     // 仅在城市名改变，或者更新时间改变时才触发（待添加）
     activated() {
@@ -45,7 +45,7 @@ export default {
         return {
             // curCityCode: '310000'
             series: [],
-            districtList: []
+            districtList: [],
         }
     },
     computed: {
@@ -55,26 +55,23 @@ export default {
     },
     methods: {
         getLocalNcovData() {
-            return axios.get(api.localNcov + `?id=${this.curCity.code}`)
+            return getLocalNcov(this.curCity.code)
         },
         getDistrictData() {
-            return axios.get(api.district_stat + `?id=${this.curCity.code}`)
+            return getDistrictStat(this.curCity.code)
         },
-        getCityNcovCitiesData() {
-            let res1 = this.getLocalNcovData()
-            let res2 = this.getDistrictData()
+        getAllData() {
+            let res1 = this.getLocalNcovData();
+            let res2 = this.getDistrictData();
             Promise.all([res1, res2]).then(this.getAllDataSucc)
         },
         getAllDataSucc(datas) {
             console.log(datas)
-            let localNov = datas[0].data
-            let districtStat = datas[1].data
-            if (!localNov.errNo && localNov.data) {
-                this.series = localNov.data.series
-            }
-            if (!districtStat.errNo && districtStat.data.status === 'success') {
-                this.districtList = districtStat.data.data.list
-            }
+            let localNov = datas[0]
+            let districtStat = datas[1]
+
+            this.series = localNov.series
+            this.districtList = districtStat.data.list
         }
     },
 

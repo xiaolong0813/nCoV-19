@@ -6,3 +6,9 @@
 5. total，较前日
 6. local 的table，最后一列，详情
 7 https://www.jianshu.com/p/7994176fbcc4 参考echarts使用方法。使用vuex较好
+
+
+
+
+笔记：
+1. https://blog.csdn.net/harmsworth2016/article/details/84403396  使用dev下的proxyTable进行http代理
