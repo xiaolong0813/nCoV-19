@@ -12,3 +12,5 @@
 
 笔记：
 1. https://blog.csdn.net/harmsworth2016/article/details/84403396  使用dev下的proxyTable进行http代理
+2. 父组件异步获取的数据赋予子组件属性时可能会失败，因为在获取数据之前就已经渲染了子组件。这时候可以使用子组件元素使用 v-if=属性，当该
+属性有值时才渲染。或者子组件内使用watch监听该属性： https://blog.csdn.net/dongguan_123/article/details/80317871

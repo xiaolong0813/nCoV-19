@@ -6,9 +6,10 @@
           <epidemic-total></epidemic-total>
           <epidemic-map></epidemic-map>
           <epidemic-table :list="districtList"></epidemic-table>
-          <epidemic-trend :series="series"></epidemic-trend>
+          <epidemic-trend :series="series"
+                          v-if="series.length"
+          ></epidemic-trend>
       </div>
-
   </div>
 </template>
 

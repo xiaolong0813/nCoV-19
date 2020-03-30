@@ -33,7 +33,12 @@
                 type: Array,
                 required: true,
                 default: []
-            },
+            }
+        },
+        watch: {
+            series(newValue, oldValue) {
+                
+            }
         },
         computed: {
             seriesDate() {
@@ -47,12 +52,6 @@
                 })
             },
             opt() {
-                // console.log(this.series)
-                // console.log(this.seriesDate)
-                // console.log(this.dataSource)
-                let ss = this.dataSource
-                console.log(this.seriesDate)
-                console.log(ss)
                 let obj = {
                     title: {
                         text: '最新疫情趋势',
@@ -84,7 +83,6 @@
             setEchart() {
                 let dom = this.$refs.eChart
                 this.chart = echarts.init(dom)
-                console.log(this.opt)
                 this.chart.setOption(this.opt)
             },
             // changeEchart() {
