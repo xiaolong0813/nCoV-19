@@ -7,8 +7,8 @@
           <epidemic-map></epidemic-map>
           <epidemic-table :list="districtList"></epidemic-table>
           <epidemic-trend :series="series"
-                          v-if="series.length"
           ></epidemic-trend>
+            <!--epidemic-trend 也可以使用 v-if="series.length" 判断是否渲染-->
       </div>
   </div>
 </template>

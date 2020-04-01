@@ -35,20 +35,16 @@
                 default: []
             }
         },
+        // 也可以使用update，有数据改变时就调用changeEchart，这里只观察series参数
         watch: {
             series(newValue, oldValue) {
-                
+                this.changeEchart()
             }
         },
         computed: {
-            seriesDate() {
-                return ["1衬衫","1羊毛衫","雪纺衫","裤子","高跟鞋","袜子"].map(item => {
-                    return [item + 'ooo', item + 'nnn']
-                })
-            },
             dataSource() {
-                return this.series.map(item => {
-                    return [item.date, item.confirmedNum, item.deathsNum, item.curesNum]
+                return this.series.reverse().map(item => {
+                    return [item.date.split('-').slice(1).join('.'), item.confirmedNum, item.deathsNum, item.curesNum]
                 })
             },
             opt() {
@@ -64,15 +60,24 @@
                         type: 'category'
                     },
                     yAxis: {},
-                    test: this.seriesDate,
                     dataset: {
                         source: this.dataSource
                     },
                     series: [
                         {
-                            name: '销量',
+                            name: '累积确诊',
                             type: 'line',
                             encode: {x: 0, y: 1}
+                        },
+                        {
+                            name: '死亡',
+                            type: 'line',
+                            encode: {x: 0, y: 2}
+                        },
+                        {
+                            name: '治愈',
+                            type: 'line',
+                            encode: {x: 0, y: 3}
                         }
                     ]
                 }
@@ -85,9 +90,9 @@
                 this.chart = echarts.init(dom)
                 this.chart.setOption(this.opt)
             },
-            // changeEchart() {
-            //     this.chart.setOption(this.opt)
-            // }
+            changeEchart() {
+                this.chart.setOption(this.opt)
+            }
         },
     }
 </script>
