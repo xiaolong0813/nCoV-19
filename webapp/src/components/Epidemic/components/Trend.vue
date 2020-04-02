@@ -43,25 +43,80 @@
         },
         computed: {
             dataSource() {
-                return this.series.reverse().map(item => {
-                    return [item.date.split('-').slice(1).join('.'), item.confirmedNum, item.deathsNum, item.curesNum]
+                // 如果不设置xAxis，应该 this.series.reverse().map(...) 取反
+                return this.series.map(item => {
+                    return [item.date, item.confirmedNum, item.deathsNum, item.curesNum]
                 })
             },
-            opt() {
-                let obj = {
+            staticOpt() {
+                return {
                     title: {
-                        text: '最新疫情趋势',
+                        text: '最新疫情趋势图',
                         textStyle: {
                             fontSize: 14
                         }
                     },
+                    legend: {
+                        // show: true
+
+                    },
+                    grid: {
+                        top: '20%',
+                        left: '3%',
+                        right: '0%',
+                        bottom: '13%',
+                        containLabel: true
+                    },
                     tooltip: {},
                     xAxis: {
-                        type: 'category'
+                        type: 'category',
+                        inverse: true,     // 如果不设置这个，data数组应该取 reverse()
+                        axisTick: {
+                            // alignWithLabel: true,
+                            show: false,
+                            interval: 3
+                        },
+                        axisLine: {
+                            lineStyle: {
+                                color: '#f0f0f0'
+                            }
+                        },
+                        axisLabel: {
+                            interval: 3,
+                            rotate: 45,
+                            margin: 8,
+                            fontSize: 8.5,
+                            color: '#999999',
+                            showMinLabel: true,
+                            showMaxLabel: true,
+                            formatter: function (val, index) {
+                                // var date = new Date(val)
+                                // var text = [String(date.getUTCMonth() + 1).padStart(2, 0), String(date.getDate()).padStart(2, 0)]
+                                // return text.join('.')
+                                return val.split('-').slice(1).join('.')  // 和上面效果一样
+                            }
+                        }
                     },
-                    yAxis: {},
-                    dataset: {
-                        source: this.dataSource
+                    yAxis: {
+                        axisTick: {
+                            show: false
+                        },
+                        splitLine: {
+                            lineStyle: {
+                                color: '#f0f0f0'
+                            }
+                        },
+                        axisLine: {
+                            lineStyle: {
+                                color: '#f0f0f0'
+                            }
+                        },
+                        axisLabel: {
+                            fontSize: 11,
+                            color: '#666666',
+                            // showMinLabel: true,
+                            // showMaxLabel: true,
+                        }
                     },
                     series: [
                         {
@@ -81,17 +136,23 @@
                         }
                     ]
                 }
-                return obj;
+            },
+            dynamicOpt() {
+                return {
+                    dataset: {
+                        source: this.dataSource
+                    }
+                }
             }
         },
         methods: {
             setEchart() {
                 let dom = this.$refs.eChart
                 this.chart = echarts.init(dom)
-                this.chart.setOption(this.opt)
+                this.chart.setOption(this.staticOpt)
             },
             changeEchart() {
-                this.chart.setOption(this.opt)
+                this.chart.setOption(this.dynamicOpt)
             }
         },
     }
