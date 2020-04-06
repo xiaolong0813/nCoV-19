@@ -4,7 +4,7 @@
       <div class="block-container">
           <epidemic-title></epidemic-title>
           <epidemic-total></epidemic-total>
-          <epidemic-map></epidemic-map>
+          <epidemic-map :geoData="geoData"></epidemic-map>
           <epidemic-table :list="districtList"></epidemic-table>
           <epidemic-trend :series="series"
           ></epidemic-trend>
@@ -21,7 +21,11 @@
     import EpidemicTable from "./components/Table";
     import EpidemicTrend from "./components/Trend";
     // udf api
-    import { getLocalNcov, getDistrictStat } from '@/api/local'
+    import {
+        getLocalNcov,
+        getDistrictStat,
+        getNormandyInfo
+    } from '@/api/local'
     // store
     import { mapState } from 'vuex'
 export default {
@@ -47,6 +51,7 @@ export default {
             // curCityCode: '310000'
             series: [],
             districtList: [],
+            geoData: {}
         }
     },
     computed: {
@@ -61,18 +66,25 @@ export default {
         getDistrictData() {
             return getDistrictStat(this.curCity.code)
         },
+        getNormandyInfo() {
+            return getNormandyInfo(this.curCity.code)
+        },
         getAllData() {
-            let res1 = this.getLocalNcovData();
-            let res2 = this.getDistrictData();
-            Promise.all([res1, res2]).then(this.getAllDataSucc)
+            let resList = []
+            resList.push(this.getLocalNcovData());
+            resList.push(this.getDistrictData());
+            resList.push(this.getNormandyInfo());
+            Promise.all(resList).then(this.getAllDataSucc)
         },
         getAllDataSucc(datas) {
-            console.log(datas)
+            // console.log(datas)
             let localNov = datas[0]
             let districtStat = datas[1]
+            let normandyInfo = datas[2]
 
             this.series = localNov.series
             this.districtList = districtStat.data.list
+            this.geoData = normandyInfo.data
         }
     },
 

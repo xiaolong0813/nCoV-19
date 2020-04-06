@@ -6,8 +6,9 @@
         </div>
         <div class="district-map">
             <div class="district-map-content">
-                <div>
-                    这里是echart地图
+                <div ref="eChart_map"
+                     style="width: 100%; height: 100%"
+                >
                 </div>
             </div>
             <div class="district-map-visual">
@@ -33,8 +34,63 @@
 </template>
 
 <script>
+    import echarts from 'echarts/lib/echarts'
+    import 'echarts/lib/chart/map'
+    import 'echarts/lib/component/title'
+
     export default {
         name: "EpidemicMap",
+        data() {
+            return {
+                chart: {}
+            }
+        },
+        props: {
+            geoData: {
+                type: Object,
+                required: true,
+                default: {}
+            },
+        },
+        computed: {
+            staticOpt() {
+                return {
+                    series: [
+                        {
+                            type: 'map',
+
+                        }
+                    ]
+
+                };
+            },
+            dynamicOpt() {
+                return {
+
+                }
+            }
+        },
+        watch: {
+            geoData() {
+                console.log(this.geoData)
+                this.changeEchart()
+            }
+        },
+        mounted() {
+            this.setEchart()
+        },
+        methods: {
+            setEchart() {
+                let dom = this.$refs.eChart_map
+                this.chart = echarts.init(dom)
+                this.chart.registerMap('normandy_info', this.geoData)
+
+                this.chart.setOption(this.staticOpt)
+            },
+            changeEchart() {
+                // this.chart.registerMap('normandy_info', this.geoData)
+            }
+        },
 
     }
 </script>

@@ -21,3 +21,12 @@ export function getDistrictStat(id) {
         params: { id }
     })
 }
+
+export function getNormandyInfo(id) {
+    return request({
+        url: getEnvUrl('local/normandy_info'),
+        method: 'get',
+        params: { id }
+    })
+
+}
