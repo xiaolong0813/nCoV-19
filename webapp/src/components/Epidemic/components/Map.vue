@@ -72,7 +72,7 @@
         },
         watch: {
             geoData() {
-                console.log(this.geoData)
+                // console.log(this.geoData)
                 this.changeEchart()
             }
         },
@@ -82,8 +82,10 @@
         methods: {
             setEchart() {
                 let dom = this.$refs.eChart_map
+                echarts.registerMap('normandy_info', this.geoData)
+
                 this.chart = echarts.init(dom)
-                this.chart.registerMap('normandy_info', this.geoData)
+
 
                 this.chart.setOption(this.staticOpt)
             },
