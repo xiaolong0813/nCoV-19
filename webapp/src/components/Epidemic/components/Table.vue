@@ -62,7 +62,7 @@
             list: {
                 type: Array,
                 required: true
-            },
+            }
         },
         methods: {
             handleShowMore() {

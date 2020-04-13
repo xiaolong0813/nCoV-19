@@ -5,9 +5,16 @@
             <p class="p2">依据卫健委数据按日更新，非实时数据</p>
         </div>
         <div class="district-map">
-            <div class="district-map-content">
+            <div class="district-map-content" style="position: relative">
+                <!--正常文档流中和设置浮动的情况下，相对于父元素content-box的宽度；
+                   绝对定位时，相对于包含块padding-box的宽度，所以这里父元素设置relative，
+                   子元素也就是chart设置absolute，才能使chart100%大小
+                   -->
                 <div ref="eChart_map"
-                     style="width: 100%; height: 100%"
+                     style="
+                     width: 100%; height: 100%;
+                     position: absolute; top: 0; bottom: 0; left: 0; right: 0;
+                     "
                 >
                 </div>
             </div>
@@ -42,7 +49,8 @@
         name: "EpidemicMap",
         data() {
             return {
-                chart: {}
+                chart: {},
+                curDistrict: ''
             }
         },
         props: {
@@ -51,14 +59,21 @@
                 required: true,
                 default: {}
             },
+            list: {
+                type: Array,
+                required: true
+            }
         },
         computed: {
             staticOpt() {
                 return {
+                    title: {
+
+                    },
                     series: [
                         {
                             type: 'map',
-
+                            map: 'cityMap'
                         }
                     ]
 
@@ -72,25 +87,27 @@
         },
         watch: {
             geoData() {
-                // console.log(this.geoData)
+                this.setEchart()
+            },
+            list() {
+                console.log(this.list)
                 this.changeEchart()
             }
         },
         mounted() {
-            this.setEchart()
+            // this.setEchart()
+            // 初始情况下获取不到geo数据无法初始化地图，不能放在这里
         },
         methods: {
             setEchart() {
                 let dom = this.$refs.eChart_map
-                echarts.registerMap('normandy_info', this.geoData)
-
+                echarts.registerMap('cityMap', this.geoData)
                 this.chart = echarts.init(dom)
-
 
                 this.chart.setOption(this.staticOpt)
             },
             changeEchart() {
-                // this.chart.registerMap('normandy_info', this.geoData)
+                this.chart.setOption(this.dynamicOpt)
             }
         },
 
