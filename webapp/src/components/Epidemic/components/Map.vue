@@ -50,7 +50,32 @@
         data() {
             return {
                 chart: {},
-                curDistrict: ''
+                curDistrict: {},
+                staticOpt: {
+                    title: {},
+                    tooltip: {
+                        trigger: 'item',
+                        triggerOn: 'click',
+                        formatter: '{b}<br/>{c} (p / km2)',
+                        alwaysShowContent: true
+                    },
+                    series: [
+                        {
+                            type: 'map',
+                            map: 'cityMap',
+                            label: {
+                                show: true,
+                                fontSize: 8
+                            },
+                            data: [
+                                {name: '崇明区', value: 123},
+                                {name: '浦东新区', value: 234},
+                                {name: '徐汇区', value: 555},
+                            ]
+                        }
+                    ]
+                },
+                mapDataObj: {}
             }
         },
         props: {
@@ -59,28 +84,32 @@
                 required: true,
                 default: {}
             },
-            list: {
+            districtDataList: {
                 type: Array,
                 required: true
             }
         },
         computed: {
-            staticOpt() {
-                return {
-                    title: {
+            // geoDataDistrictList() {
+            //     // 对象的解构赋值，相同属性名可以直接赋值
+            //     const { geoData, districtDataList } = this
+            //     return {
+            //         geoData,
+            //         districtDataList
+            //     }
+            // },
 
-                    },
-                    series: [
-                        {
-                            type: 'map',
-                            map: 'cityMap'
-                        }
-                    ]
-
-                };
-            },
             dynamicOpt() {
                 return {
+                    series: [
+                        {
+                            data: [
+                                {name: '黄浦区', value: 20057.34},
+                                {name: '浦东新区', value: 15477.48},
+                                {name: '徐汇区', value: 31686.1},
+                            ]
+                        }
+                    ]
 
                 }
             }
@@ -89,13 +118,38 @@
             geoData() {
                 this.setEchart()
             },
-            list() {
-                console.log(this.list)
+            districtDataList() {
+                for (let item of this.districtDataList) {
+                    let locId = item.local_id
+                    if (locId !== 0) {
+                        this.mapDataObj.locId = item
+                        if (this.curDistrict.confirmed_count < item.confirmed_count) {
+                            this.curDistrict = item
+                        }
+                    }
+                }
+                console.log(this.curDistrict)
                 this.changeEchart()
-            }
+            },
+            // 这里是 watch 中的 WatchOptionsWithHandler 类型数据
+            // 同时监视 geo数据和 district分布数据，当两种都有数据时进行赋值
+            // geoDataDistrictList: {
+            //     handler: (newval , oldval) => {
+            //         console.log('old value is: ', oldval)   // {geoData: {…}, districtDataList: Array(0)}
+            //         console.log('new value is: ', newval)   // {geoData: {…}, districtDataList: Array(18)}
+            //         const { geoData, districtDataList } = newval
+            //         if (geoData.features.length && districtDataList.length) {
+            //
+            //         }
+            //     },
+            //     deep: true
+            // }
         },
         mounted() {
+            //  下面打印结果： {__ob__: Observer} [__ob__: Observer]
+            // console.log('initial value is: ', this.geoData, this.districtDataList)
             // this.setEchart()
+            // console.log(this.$refs.eChart_map)
             // 初始情况下获取不到geo数据无法初始化地图，不能放在这里
         },
         methods: {

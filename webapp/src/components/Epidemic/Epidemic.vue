@@ -6,7 +6,7 @@
           <epidemic-total></epidemic-total>
 <!--          下面两个组件map和table引用了同一个Array类型参数，其指向的是同一个引用型变量districtList-->
 <!--          在一个组件中修改该变量另一个也会变，一般不应该直接改动props，而是先赋予子组件data中的变量，再进行修改-->
-          <epidemic-map :geoData="geoData" :list="districtList"></epidemic-map>
+          <epidemic-map :geoData="geoData" :districtDataList="districtList"></epidemic-map>
           <epidemic-table :list="districtList"></epidemic-table>
           <epidemic-trend :series="series"
           ></epidemic-trend>
