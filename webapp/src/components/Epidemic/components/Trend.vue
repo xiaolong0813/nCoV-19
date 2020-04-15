@@ -12,9 +12,11 @@
 </template>
 
 <script>
+    // 如果分别引入，注意要引全，否则某项不起作用
     import echarts from 'echarts/lib/echarts'
     import 'echarts/lib/chart/line'
     import 'echarts/lib/component/title'
+    import 'echarts/lib/component/tooltip'
 
     export default {
         name: "EpidemicTrend",
@@ -55,9 +57,12 @@
                             fontSize: 14
                         }
                     },
+                    tooltip: {
+                        trigger: 'axis',
+                        triggerOn: 'click'
+                    },
                     legend: {
                         // show: true
-
                     },
                     grid: {
                         top: '20%',
@@ -66,7 +71,6 @@
                         bottom: '13%',
                         containLabel: true
                     },
-                    tooltip: {},
                     xAxis: {
                         type: 'category',
                         inverse: true,     // 如果不设置这个，data数组应该取 reverse()
