@@ -33,7 +33,9 @@
                     :key="i"
                 >
                     <div :class="['visual-item-rect', 'cityVisualMap-' + (i + 1)]"></div>
-                    <p class="visual-item-text">{{1 + 20 * (i - 1)}}-{{20 * i}}</p>
+                    <p class="visual-item-text">
+                        {{visualMapValueObj.list[i - 1]}}
+                    </p>
                 </div>
             </div>
         </div>
@@ -41,23 +43,32 @@
 </template>
 
 <script>
+    // 引入所需要的组件，不引入的话无法使用
     import echarts from 'echarts/lib/echarts'
     import 'echarts/lib/chart/map'
-    // import 'echarts/lib/component/title'
     import 'echarts/lib/component/tooltip'
+    import 'echarts/lib/component/visualMap'
+
+    import { COLOR } from '@/utils/globalParams'
+
+    import getElementByItaClass from '@/utils/domOperation'
+    import getVisualMapValues from "@/utils/getVisualMapValues";
 
     export default {
         name: "EpidemicMap",
         data() {
             return {
                 chart: {},
-                curDistrict: {},
+                maxDistrict: {},
                 // unchanged options for map chart
                 staticOpt: {
                     title: {},
                     tooltip: {
                         trigger: 'item',
                         triggerOn: 'click',
+                        textStyle: {
+                            fontSize: 8
+                        },
                         //鼠标是否可进入提示框浮层中，默认为false.设置为true后可以点击，原理是设置了tip元素的 pointer-events 为auto（默认为none）
                         enterable: true,
                         formatter: (params, ticket, callback) => {
@@ -86,11 +97,12 @@
                         },
                         alwaysShowContent: true
                     },
+
                     series: [
                         {
                             type: 'map',
                             map: 'cityMap',
-                            zoom:1.18,  // 放大一定倍数
+                            zoom: 1.18,  // 放大一定倍数
                             label: {
                                 show: true,
                                 fontSize: 8
@@ -130,6 +142,9 @@
             //         districtDataList
             //     }
             // },
+            visualMapValueObj() {
+                return getVisualMapValues(this.maxDistrict.confirmed_count)
+            },
 
             mappingData() {
                 let data = []
@@ -146,6 +161,16 @@
             },
             dynamicOpt() {
                 return {
+                    visualMap: {
+                        type: 'piecewise',
+                        splitNumber: 6,
+                        // min: 1,
+                        // max: this.visualMapValueObj.val,
+                        minOpen: true,
+                        inRange: {
+                            color: COLOR.cityVisualMap
+                        }
+                    },
                     series: [
                         {
                             data: this.mappingData
@@ -167,12 +192,13 @@
                 this.geoMapping = mapping
             },
             districtDataList() {
-                let mapping = {};
+                let mapping = {}, flag = 0;
                 this.districtDataList.map(item => {
                     if (item.local_id !== 0) {
                         mapping[String(item.local_id)]  = item
-                    }
+                    } else flag ++
                 })
+                this.maxDistrict = this.districtDataList[flag]
                 this.districtMapping = mapping
                 this.changeEchart()
             },
@@ -205,9 +231,8 @@
                 // 事件代理的方式给 trace 元素绑定事件
                 dom.addEventListener('click', event => {
                     let tar = event.target
-                    if (tar.className === 'trace') {
-                        this.handleTraceClick(tar.parentElement.dataset.adcode)
-                    }
+                    let div = getElementByItaClass(tar, 'trace')
+                    if (div) this.handleTraceClick(div)
                 })
             },
             // dynamicOpt 同时监视 geo 和 district 数据，只要两者有变化，就执行changeEchart
@@ -215,7 +240,8 @@
                 console.log(this.dynamicOpt)
                 this.chart.setOption(this.dynamicOpt)
             },
-            handleTraceClick(code) {
+            handleTraceClick(dom) {
+                let code = dom.parentNode.dataset.adcode
                 console.log('click dom, ad code: ', code)
             }
         },
