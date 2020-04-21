@@ -34,7 +34,7 @@
                 >
                     <div :class="['visual-item-rect', 'cityVisualMap-' + (i + 1)]"></div>
                     <p class="visual-item-text">
-                        {{visualMapValueObj.list[i - 1]}}
+                        {{`${visualMapList[i].min}-${visualMapList[i].max}`}}
                     </p>
                 </div>
             </div>
@@ -52,7 +52,7 @@
     import { COLOR } from '@/utils/globalParams'
 
     import getElementByItaClass from '@/utils/domOperation'
-    import getVisualMapValues from "@/utils/getVisualMapValues";
+    import getVisualMapList from "@/utils/getVisualMapValues";
 
     export default {
         name: "EpidemicMap",
@@ -107,6 +107,9 @@
                                 show: true,
                                 fontSize: 8
                             },
+                            itemStyle: {
+                                borderColor: '#999999'
+                            },
                             emphasis: {
                                 label: {
                                     show: true
@@ -142,8 +145,8 @@
             //         districtDataList
             //     }
             // },
-            visualMapValueObj() {
-                return getVisualMapValues(this.maxDistrict.confirmed_count)
+            visualMapList() {
+                return getVisualMapList(this.maxDistrict.confirmed_count)
             },
 
             mappingData() {
@@ -163,10 +166,13 @@
                 return {
                     visualMap: {
                         type: 'piecewise',
-                        splitNumber: 6,
+                        show: false,
+                        // 不适用以下自动配置，而用pieces详细指定
+                        // splitNumber: 6,
                         // min: 1,
                         // max: this.visualMapValueObj.val,
-                        minOpen: true,
+                        // minOpen: true,
+                        pieces: this.visualMapList,
                         inRange: {
                             color: COLOR.cityVisualMap
                         }
