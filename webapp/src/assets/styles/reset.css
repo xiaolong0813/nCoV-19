@@ -36,3 +36,8 @@ a {color: #25a4bb;text-decoration: none;}
     touch-callout: none;
     text-decoration: none;
 }
+
+#app, body, html {
+    height: 100%;
+    width: 100%;
+}

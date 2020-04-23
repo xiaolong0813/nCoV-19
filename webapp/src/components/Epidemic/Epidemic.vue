@@ -2,14 +2,13 @@
   <div>
       <epidemic-logo :city="this.curCity.name"></epidemic-logo>
       <div class="block-container">
-          <epidemic-title></epidemic-title>
-          <epidemic-total></epidemic-total>
+          <epidemic-title :updateTime="updateTime" :cityName="this.curCity.name"></epidemic-title>
+          <epidemic-total :total="total" :incr="incr"></epidemic-total>
 <!--          下面两个组件map和table引用了同一个Array类型参数，其指向的是同一个引用型变量districtList-->
 <!--          在一个组件中修改该变量另一个也会变，一般不应该直接改动props，而是先赋予子组件data中的变量，再进行修改-->
-          <epidemic-map :geoData="geoData" :districtDataList="districtList"></epidemic-map>
+          <epidemic-map :cityName="this.curCity.name" :geoData="geoData" :districtDataList="districtList"></epidemic-map>
           <epidemic-table :list="districtList"></epidemic-table>
-          <epidemic-trend :series="series"
-          ></epidemic-trend>
+          <epidemic-trend :series="series"></epidemic-trend>
             <!--epidemic-trend 也可以使用 v-if="series.length" 判断是否渲染-->
       </div>
   </div>
@@ -29,7 +28,7 @@
         getNormandyInfo
     } from '@/api/local'
     // store
-    import { mapState } from 'vuex'
+    import { mapState, mapMutations } from 'vuex'
 export default {
     name: 'Epidemic',
     components: {
@@ -42,6 +41,7 @@ export default {
     },
     // keep-alive 的情况下仅第一次渲染时会触发。所以肯定需要获取数据
     mounted() {
+        console.log('store: ', this.curCity.name)
         this.getAllData()
     },
     // 仅在城市名改变，或者更新时间改变时才触发（待添加）
@@ -51,6 +51,11 @@ export default {
     data() {
         return {
             // curCityCode: '310000'
+            updateTime: 0,
+            cityName: '',
+            cityCode: 0,
+            total: {},
+            incr: {},
             series: [],
             districtList: [],
             geoData: {}
@@ -62,6 +67,9 @@ export default {
         ...mapState({curCity: 'city'})
     },
     methods: {
+        ...mapMutations({
+            changeCity: 'cityCommit'
+        }),
         getLocalNcovData() {
             return getLocalNcov(this.curCity.code)
         },
@@ -76,6 +84,7 @@ export default {
             resList.push(this.getLocalNcovData());
             resList.push(this.getDistrictData());
             resList.push(this.getNormandyInfo());
+
             Promise.all(resList).then(this.getAllDataSucc)
         },
         getAllDataSucc(datas) {
@@ -84,9 +93,18 @@ export default {
             let districtStat = datas[1]
             let normandyInfo = datas[2]
 
+            this.updateTime = localNov.updateTime
+            this.cityName = localNov.cityName
+            this.total = localNov.cityTotal
+            this.incr = localNov.cityIncr
             this.series = localNov.series
             this.districtList = districtStat.data.list
             this.geoData = normandyInfo.data
+
+            // this.changeCity({
+            //     name: this.cityName,
+            //     code: '310000'
+            // })
         }
     },
 

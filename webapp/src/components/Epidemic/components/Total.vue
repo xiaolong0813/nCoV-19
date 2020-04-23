@@ -1,35 +1,35 @@
 <template>
     <div class="total">
         <div class="total-item-allConfirmed">
-            <p class="stat-num">414</p>
+            <p class="stat-num">{{total.confirmedTotal}}</p>
             <p class="stat-text">累积确诊</p>
             <p class="stat-compare">
-                昨日
-                <span>+10</span>
+                {{incr.confirmedIncrPrefix}}
+                <span>{{incr.confirmedIncrStr}}</span>
             </p>
         </div>
         <div class="total-item-curConfirmed">
-            <p class="stat-num">81</p>
+            <p class="stat-num">{{total.treatingTotal}}</p>
             <p class="stat-text">现有确诊</p>
             <p class="stat-compare">
-                昨日
-                <span>+9</span>
+                {{incr.treatingIncrPrefix}}
+                <span>{{incr.treatingIncrStr}}</span>
             </p>
         </div>
         <div class="total-item-dead">
-            <p class="stat-num">4</p>
+            <p class="stat-num">{{total.deathsTotal}}</p>
             <p class="stat-text">死亡人数</p>
             <p class="stat-compare">
-                昨日
-                <span>+0</span>
+                {{incr.deathsIncrPrefix}}
+                <span>{{incr.deathsIncrStr}}</span>
             </p>
         </div>
         <div class="total-item-cured">
-            <p class="stat-num">329</p>
+            <p class="stat-num">{{total.curesTotal}}</p>
             <p class="stat-text">治愈人数</p>
             <p class="stat-compare">
-                昨日
-                <span>+1</span>
+                {{incr.curesIncrPrefix}}
+                <span>{{incr.curesIncrStr}}</span>
             </p>
         </div>
     </div>
@@ -37,7 +37,17 @@
 
 <script>
     export default {
-        name: "EpidemicTotal"
+        name: "EpidemicTotal",
+        props: {
+            total: {
+                type: Object,
+                required: true
+            },
+            incr: {
+                type: Object,
+                required: true
+            }
+        },
     }
 </script>
 

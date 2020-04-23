@@ -1,11 +1,11 @@
 <template>
     <div class="block-title">
         <p>
-            上海疫情
+            {{cityName}}疫情
         </p>
         <p class="block-title-right">
             截止
-            2020/03/22 12:26
+            {{updateTime}}
             <i class="iconfont info-icon">&#xe752;</i>
         </p>
     </div>
@@ -13,7 +13,17 @@
 
 <script>
     export default {
-        name: "EpidemicTitle"
+        name: "EpidemicTitle",
+        props: {
+            updateTime: {
+                type: Number,
+                default: 0
+            },
+            cityName: {
+                type: String,
+                required: true
+            }
+        },
     }
 </script>
 

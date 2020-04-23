@@ -12,7 +12,7 @@ let defaultCity = {
 
 try {
     if (localStorage.city) {
-        defaultCity = localStorage.city
+        defaultCity = JSON.parse(localStorage.city)
     }
 } catch (e) {
     console.log(e)
@@ -28,7 +28,7 @@ export default new Vuex.Store({
             state.city = newCity
             // 保存到本地，以便下次加载使用
             try {
-                localStorage.city = newCity
+                localStorage.city = JSON.stringify(newCity)
             } catch (e) {
                 console.log(e)
             }

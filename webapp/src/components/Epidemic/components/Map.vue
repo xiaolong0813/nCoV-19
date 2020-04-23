@@ -1,7 +1,7 @@
 <template>
     <div class="district">
         <div class="district-title">
-            <p class="p1">XX区县分布</p>
+            <p class="p1">{{cityName}}区县分布</p>
             <p class="p2">依据卫健委数据按日更新，非实时数据</p>
         </div>
         <div class="district-map">
@@ -34,7 +34,10 @@
                 >
                     <div :class="['visual-item-rect', 'cityVisualMap-' + (i + 1)]"></div>
                     <p class="visual-item-text">
-                        {{`${visualMapList[i].min}-${visualMapList[i].max}`}}
+                        {{visualMapList[i].min === visualMapList[i].max ?
+                        visualMapList[i].min :
+                        `${visualMapList[i].min}-${visualMapList[i].max}`
+                        }}
                     </p>
                 </div>
             </div>
@@ -102,10 +105,11 @@
                         {
                             type: 'map',
                             map: 'cityMap',
-                            zoom: 1.18,  // 放大一定倍数
+                            zoom: 1.15,  // 放大一定倍数
                             label: {
                                 show: true,
-                                fontSize: 8
+                                fontSize: 8,
+                                color: '#222222'
                             },
                             itemStyle: {
                                 borderColor: '#999999'
@@ -126,6 +130,10 @@
             }
         },
         props: {
+            cityName: {
+                type: String,
+                required: true
+            },
             geoData: {
                 type: Object,
                 required: true,
@@ -243,8 +251,12 @@
             },
             // dynamicOpt 同时监视 geo 和 district 数据，只要两者有变化，就执行changeEchart
             changeEchart() {
-                console.log(this.dynamicOpt)
+                // console.log(this.dynamicOpt)
                 this.chart.setOption(this.dynamicOpt)
+                // 触发action，显示最多数据的tooltip
+                this.chart.dispatchAction({
+                    type: 'showTip'
+                })
             },
             handleTraceClick(dom) {
                 let code = dom.parentNode.dataset.adcode
